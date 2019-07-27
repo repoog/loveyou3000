@@ -15,13 +15,14 @@ elif [ $is_start -eq 0 ]; then
 fi
 
 day=$[$(cat $days_path)+1]
-echo $[$day+1] > $days_path
+echo $day > $days_path
 
 line_num=$[$[$day/7]+1]
 ascii_num=$[$day%7]
 
 line_ascii=$(sed -n $[$line_num]p $ascii_path)
-flag=${line_ascii:$[$ascii_num-1]:1}
+flag=$(echo $line_ascii | cut -c$ascii_num)
+echo $flag
 
 if [ $flag -eq 0 ]; then
 	echo "Not commit"
