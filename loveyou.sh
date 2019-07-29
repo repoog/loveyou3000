@@ -22,7 +22,6 @@ ascii_num=$[$day%7]
 
 line_ascii=$(sed -n $[$line_num]p $ascii_path)
 flag=$(echo $line_ascii | cut -c$ascii_num)
-echo $flag
 
 if [ $flag -eq 0 ]; then
 	echo "Not commit"
