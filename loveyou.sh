@@ -3,6 +3,7 @@
 is_start_path="/home/ubuntu/loveyou3000/is_start.txt"
 days_path="/home/ubuntu/loveyou3000/days.txt"
 ascii_path="/home/ubuntu/loveyou3000/ascii.txt"
+commit_path="/home/ubuntu/loveyou3000/commit.txt"
 
 today=$[$[$(date +%w)+1]%7]
 is_start=$(cat $is_start_path)
@@ -14,11 +15,11 @@ elif [ $is_start -eq 0 ]; then
 	exit
 fi
 
-day=$[$(cat $days_path)+1]
-echo $day > $days_path
+day=$(cat $days_path)
+echo $[$day+1] > $days_path
 
 line_num=$[$[$day/7]+1]
-ascii_num=$[$day%7]
+ascii_num=$[$[$day%7]+1]
 
 line_ascii=$(sed -n $[$line_num]p $ascii_path)
 flag=$(echo $line_ascii | cut -c$ascii_num)
@@ -30,7 +31,7 @@ elif [ $flag -eq 1 ]; then
 	echo "Love Love Love"
 	for i in {0..7}
 	do
-		echo $i > commit.txt
+		echo $i > commit_path
 		git add .
 		git commit -m 'love you'
 		git push origin master	
