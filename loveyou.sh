@@ -31,7 +31,7 @@ elif [ $flag -eq 1 ]; then
 	echo "Love Love Love"
 	for i in {0..7}
 	do
-		echo $i > commit_path
+		echo $i > $commit_path
 		git add .
 		git commit -m 'love you'
 		git push origin master	
