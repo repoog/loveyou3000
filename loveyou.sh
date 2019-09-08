@@ -1,9 +1,10 @@
 #!/bin/bash
 
-is_start_path="/home/ubuntu/loveyou3000/is_start.txt"
-days_path="/home/ubuntu/loveyou3000/days.txt"
-ascii_path="/home/ubuntu/loveyou3000/ascii.txt"
-commit_path="/home/ubuntu/loveyou3000/commit.txt"
+base_path="/home/ubuntu/loveyou3000"
+is_start_path=$base_path"/is_start.txt"
+days_path=$base_path"/days.txt"
+ascii_path=$base_path"/ascii.txt"
+commit_path=$base_path"/commit.txt"
 
 today=$[$[$(date +%w)+1]%7]
 is_start=$(cat $is_start_path)
@@ -32,6 +33,7 @@ elif [ $flag -eq 1 ]; then
 	for i in {0..7}
 	do
 		echo $i > $commit_path
+		cd $base_path
 		git add .
 		git commit -m 'love you'
 		git push origin master	
